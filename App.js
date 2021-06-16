@@ -7,6 +7,15 @@ import {
 } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
+// import { createStore, combineReducers } from 'redux';
+// import { goalsReducer } from './store/reducers/goals';
+// import { Provider } from "react-redux";
+
+// const rootReducer = combineReducers({
+//   goals: goalsReducer
+// });
+
+// const store = createStore(rootReducer);
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
@@ -31,20 +40,22 @@ export default function App() {
   };
 
   return (
-    <View style={styles.screen}>
-      <Button title="Add new goal" onPress={() => setIsAddmode(true)}/>
-      <GoalInput visible={isAddMode} cancelGoalHandler={cancelGoalHandler} addGoaldHandler={addGoaldHandler} />
-      <FlatList
-        data={courseGoals}
-        renderItem={(itemData) => (
-          <GoalItem
-            id={itemData.item.id}
-            onDelete={removeGoalHandler}
-            item={itemData.item.value}
-          />
-        )}
-      />
-    </View>
+    // <Provider store={store}>
+      <View style={styles.screen}>
+        <Button title="Add new goal" onPress={() => setIsAddmode(true)}/>
+        <GoalInput visible={isAddMode} cancelGoalHandler={cancelGoalHandler} addGoaldHandler={addGoaldHandler} />
+        <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => (
+            <GoalItem
+              id={itemData.item.id}
+              onDelete={removeGoalHandler}
+              item={itemData.item.value}
+            />
+          )}
+        />
+      </View>
+    // </Provider>
   );
 }
 
